@@ -1,11 +1,11 @@
 import React from "react";
-import { Chat } from "./Chat";
+import { Chat } from "./chat/Chat";
 import "./App.css";
 
 function App() {
   return (
     <div className="app">
-      <Chat name="Chatty Chat" />
+      <Chat title="Chatty Chat" nickname="Anonymous" />
     </div>
   );
 }

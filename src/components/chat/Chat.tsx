@@ -1,31 +1,30 @@
 import React from "react";
+import { v4 as uuid } from "uuid";
 import { Message } from "./Message";
 import { NewMessage } from "./NewMessage";
 import "./Chat.css";
 
-const defaultMessages = [
-  { id: 1, author: "Anonymous", content: "Hello, World!" },
-  {
-    id: 2,
-    author: "Anonymous",
-    content: "Hello, Person!",
-  },
-];
+interface ChatMessage {
+  id: string;
+  author: string;
+  message: string;
+}
 
 interface ChatProps {
-  name: string;
+  title: string;
+  nickname: string;
 }
 
 export function Chat(props: ChatProps) {
-  const [messages, setMessages] = React.useState(defaultMessages);
+  const [messages, setMessages] = React.useState<ChatMessage[]>([]);
 
   function onSendMessage(message: string) {
     setMessages((prevMessages) => [
       ...prevMessages,
       {
-        id: prevMessages[prevMessages.length - 1].id + 1,
-        author: "Anonymous",
-        content: message,
+        id: uuid(),
+        author: props.nickname,
+        message,
       },
     ]);
   }
@@ -33,7 +32,7 @@ export function Chat(props: ChatProps) {
   return (
     <div className="chat">
       <header className="header">
-        <h1>{props.name}</h1>
+        <h1>{props.title}</h1>
       </header>
 
       <div className="messages">
@@ -41,7 +40,7 @@ export function Chat(props: ChatProps) {
           <Message
             key={message.id}
             author={message.author}
-            content={message.content}
+            content={message.message}
           />
         ))}
       </div>
