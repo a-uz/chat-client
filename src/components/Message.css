@@ -1,0 +1,16 @@
+.message {
+  display: grid;
+  grid-template-columns: 8rem 1fr;
+  grid-template-areas: "author content";
+  column-gap: 1rem;
+}
+
+.message .author {
+  grid-area: author;
+  text-align: right;
+  font-weight: bold;
+}
+
+.message .content {
+  grid-area: content;
+}
