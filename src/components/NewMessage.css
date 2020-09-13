@@ -1,0 +1,26 @@
+.new-message {
+  display: grid;
+  grid-template-columns: 1fr 4rem;
+  grid-template-areas: "compose send";
+  column-gap: 0.5rem;
+  padding: 0.5rem;
+  background-color: #f2f1ef;
+}
+
+.new-message .compose-message {
+  grid-area: compose;
+  padding: 0.25rem 1rem;
+  line-height: 1.5rem;
+}
+
+.new-message .send-message {
+  grid-area: send;
+
+  border: 0;
+  background-color: #26c281;
+  color: white;
+}
+
+.new-message .send-message:hover {
+  background-color: #27ae60;
+}

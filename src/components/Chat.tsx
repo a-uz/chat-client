@@ -1,5 +1,6 @@
 import React from "react";
 import { Message } from "./Message";
+import { NewMessage } from "./NewMessage";
 import "./Chat.css";
 
 const defaultMessages = [
@@ -16,16 +17,9 @@ interface ChatProps {
 }
 
 export function Chat(props: ChatProps) {
-  const [message, setMessage] = React.useState("");
   const [messages, setMessages] = React.useState(defaultMessages);
 
-  function onSendMessage(event: React.FormEvent<HTMLFormElement>) {
-    event.preventDefault();
-
-    if (!message) {
-      return;
-    }
-
+  function onSendMessage(message: string) {
     setMessages((prevMessages) => [
       ...prevMessages,
       {
@@ -34,11 +28,6 @@ export function Chat(props: ChatProps) {
         content: message,
       },
     ]);
-    setMessage("");
-  }
-
-  function onMessageChange(event: React.ChangeEvent<HTMLInputElement>) {
-    setMessage(event.target.value);
   }
 
   return (
@@ -57,19 +46,7 @@ export function Chat(props: ChatProps) {
         ))}
       </div>
 
-      <form className="new-message" onSubmit={onSendMessage}>
-        <input
-          type="text"
-          name="message"
-          className="compose-message"
-          placeholder="Type something nice in here and press send!"
-          value={message}
-          onChange={onMessageChange}
-        />
-        <button type="submit" className="send-message">
-          Send
-        </button>
-      </form>
+      <NewMessage onSend={onSendMessage} />
     </div>
   );
 }
